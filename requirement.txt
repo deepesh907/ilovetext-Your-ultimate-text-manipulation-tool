@@ -1,0 +1,4 @@
+Django
+PyPDF2
+python-docx
+reportlab

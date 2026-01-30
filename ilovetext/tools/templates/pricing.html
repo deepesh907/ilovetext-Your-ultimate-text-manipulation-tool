@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Upload & Edit File – TextTool{% endblock %}
+
+{% block content %}
+
+<section class="pricing-section">
+    <h1>Simple, Transparent Pricing</h1>
+    <p>Use all tools for free. Upgrade only when you need more.</p>
+
+    <div class="plans">
+
+        <!-- FREE PLAN -->
+        <div class="plan-card">
+            <div class="plan-title">Free</div>
+            <div class="price">₹0 <span>/ month</span></div>
+
+            <ul>
+                <li>Access to all tools</li>
+                <li>Up to <strong>100 conversions/month</strong></li>
+                <li>Max upload size: 5 MB</li>
+                <li>Edit & export PDF, Word, TXT</li>
+                <li>Standard processing speed</li>
+                <li>Community support</li>
+            </ul>
+
+            <a href="#" class="btn btn-outline">Get Started</a>
+        </div>
+
+        <!-- PRO PLAN -->
+        <div class="plan-card popular">
+            <div class="badge">Most Popular</div>
+            <div class="plan-title">Pro</div>
+            <div class="price">₹299 <span>/ month</span></div>
+
+            <ul>
+                <li>Unlimited conversions</li>
+                <li>Max upload size: 25 MB</li>
+                <li>Faster processing</li>
+                <li>No watermarks</li>
+                <li>Priority email support</li>
+                <li>Ideal for students & professionals</li>
+            </ul>
+
+            <a href="#" class="btn btn-primary">Upgrade to Pro</a>
+        </div>
+
+        <!-- BUSINESS PLAN -->
+        <div class="plan-card">
+            <div class="plan-title">Business</div>
+            <div class="price">₹999 <span>/ month</span></div>
+
+            <ul>
+                <li>Unlimited conversions</li>
+                <li>Max upload size: 100 MB</li>
+                <li>Bulk document processing</li>
+                <li>Team usage support</li>
+                <li>Usage analytics</li>
+                <li>Priority support</li>
+            </ul>
+
+            <a href="#" class="btn btn-outline">Contact Sales</a>
+        </div>
+
+    </div>
+
+    <div class="note">
+        No credit card required for Free plan. Cancel anytime.
+    </div>
+</section>
+
+{% endblock %}

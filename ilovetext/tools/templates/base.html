@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}TextTool{% endblock %}</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'tools/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'tools/css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'tools/css/guide.css' %}">
+    {% block page_css %}{% endblock %}
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div><strong><a href="{% url 'upload_page' %}">AnalText </a></strong></div>
+        <div>
+            
+            {% comment %} <a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a> {% endcomment %}
+    <a href="{% url 'about' %}" class="{% if 'about' in request.path %}active{% endif %}">About</a>
+    <a href="{% url 'service' %}" class="{% if 'service' in request.path %}active{% endif %}">Tools</a>
+    <a href="{% url 'pricing' %}" class="{% if 'pricing' in request.path %}active{% endif %}">Pricing</a>
+    <a href="{% url 'guide' %}" class="{% if 'guide' in request.path %}active{% endif %}">How to Use</a>
+    <a href="{% url 'contact' %}" class="{% if 'contact' in request.path %}active{% endif %}">Contact</a>
+    
+        </div>
+        <div>
+            {% block login_button %}
+            <button id="login-btn" class="btn btn-blue">Login</button>
+            {% endblock %}
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+
+        <div class="footer-col">
+            <h4>PRODUCT</h4>
+            <a href="#">Home</a>
+            <a href="#">Features</a>
+            <a href="#">Pricing</a>
+            <a href="#">Tools</a>
+            <a href="#">FAQ</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>RESOURCES</h4>
+            <a href="#">TextTool Desktop</a>
+            <a href="#">TextTool Mobile</a>
+            <a href="#">TextSign</a>
+            <a href="#">TextAPI</a>
+            <a href="#">TextIMG</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>SOLUTIONS</h4>
+            <a href="#">Business</a>
+            <a href="#">Education</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>LEGAL</h4>
+            <a href="#">Security</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Cookies</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>COMPANY</h4>
+            <a href="#">About us</a>
+            <a href="#">Contact us</a>
+            <a href="#">Blog</a>
+            <a href="#">Press</a>
+        </div>
+
+        <div class="footer-col store-col">
+            <button class="store-btn">Get it on Google Play</button>
+            <button class="store-btn">Download on App Store</button>
+            <button class="store-btn">Mac App Store</button>
+            <button class="store-btn">Microsoft Store</button>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <div class="language">
+            🌐 English
+        </div>
+
+        <div class="social">
+            <a href="#">X</a>
+            <a href="#">Facebook</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Instagram</a>
+            <a href="#">TikTok</a>
+        </div>
+
+        <div class="copyright">
+            © TextTool 2026 • Your Text Editor
+        </div>
+    </div>
+</footer>
+
+
+    {% block extra_scripts %}{% endblock %}
+
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}About Us – TextTool{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>About Us</h1>
+    <p class="subtitle">Know more about TextTool and what we build</p>
+
+    <div class="editor-box" style="padding:40px;">
+
+        <div style="display:flex; gap:40px; align-items:center; flex-wrap:wrap;">
+
+            <!-- LEFT SIDE : TEXT -->
+            <div style="flex:1; min-width:280px; text-align:left; line-height:1.7;">
+                <h2>Who We Are</h2>
+                <p>
+                    TextTool is a modern online text processing platform created to make working with text
+                    simple, fast, and efficient. Our tools are designed for students, developers, writers,
+                    content creators, and professionals who need powerful text utilities without complexity.
+                </p>
+
+                <p>
+                    We focus on building clean, reliable, and user-friendly tools that help people format,
+                    clean, analyze, and transform text in seconds — directly from the browser, without
+                    installing any software.
+                </p>
+
+                <p>
+                    At TextTool, our goal is to combine performance, simplicity, and privacy into one seamless
+                    experience so you can spend less time fixing text and more time creating meaningful content.
+                </p>
+            </div>
+
+            <!-- RIGHT SIDE : IMAGE SLIDER -->
+            <div style="flex:1; min-width:260px; text-align:center; position:relative;">
+
+                <div class="about-slider">
+                    <img src="{% static 'tools/img/ceo.PNG' %}" class="slide active">
+                    <img src="{% static 'tools/img/team.PNG' %}" class="slide">
+                    <img src="{% static 'tools/img/office.jpg' %}" class="slide"> 
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<style>
+    /* Slider styles */
+    .about-slider {
+        width: 100%;
+        max-width: 420px;
+        height: 260px;
+        margin: auto;
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .about-slider img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .about-slider img.active {
+        opacity: 1;
+    }
+</style>
+
+<script>
+    // Auto image slider (changes every 3 seconds)
+    const slides = document.querySelectorAll(".about-slider .slide");
+    let currentSlide = 0;
+
+    setInterval(() => {
+        slides[currentSlide].classList.remove("active");
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add("active");
+    }, 3000); // 3 seconds
+</script>
+{% endblock %}

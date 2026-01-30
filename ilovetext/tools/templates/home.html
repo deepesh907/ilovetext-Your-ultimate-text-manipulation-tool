@@ -1,0 +1,747 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Fastest Online Text Tool – FREE{% endblock %}
+
+
+{% block content %}
+
+<div class="container">     
+
+    <h1>Fastest Online Tool to Manipulate Your Text for FREE!</h1>
+    <p class="subtitle">Clean, format, analyze and transform your text instantly</p>
+
+    <div class="upload-box">
+        <h3>Select a file to upload</h3>
+        <p>PDF, DOCX or TXT supported</p>
+
+        <input type="file" name="file" id="fileInput" accept=".pdf,.docx,.txt" hidden onchange="handleFileUpload()">
+        
+        <button type="button" class="big-upload-btn" onclick="document.getElementById('fileInput').click()">
+            📁 Choose File
+        </button>
+
+        <!-- Message placeholder -->
+        <p id="uploadMessage" style="margin-top:10px; font-weight:bold;"></p>
+
+        {% if file_type %}
+        <p class="file-info">Uploaded file type: <strong>{{ file_type|upper }}</strong></p>
+        {% endif %}
+    </div>
+
+    <!-- INPUT TEXT -->
+    <div class="editor-box">
+        <div id="highlightLayer"></div>
+        <textarea id="inputText" name="text" rows="10" style="width:100%;">{{ result.text|default:""|safe }}</textarea>
+    </div>
+    <div class='controller'>
+        <div class="left-tools">
+            <button type="button" class="btn btn-blue" onclick="copyText()"><svg width="64px" height="64px"
+                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path
+                            d="M15.24 2H11.3458C9.58159 1.99999 8.18418 1.99997 7.09054 2.1476C5.96501 2.29953 5.05402 2.61964 4.33559 3.34096C3.61717 4.06227 3.29833 4.97692 3.14701 6.10697C2.99997 7.205 2.99999 8.60802 3 10.3793V16.2169C3 17.725 3.91995 19.0174 5.22717 19.5592C5.15989 18.6498 5.15994 17.3737 5.16 16.312L5.16 11.3976L5.16 11.3024C5.15993 10.0207 5.15986 8.91644 5.27828 8.03211C5.40519 7.08438 5.69139 6.17592 6.4253 5.43906C7.15921 4.70219 8.06404 4.41485 9.00798 4.28743C9.88877 4.16854 10.9887 4.1686 12.2652 4.16867L12.36 4.16868H15.24L15.3348 4.16867C16.6113 4.1686 17.7088 4.16854 18.5896 4.28743C18.0627 2.94779 16.7616 2 15.24 2Z"
+                            fill="#1C274C"></path>
+                        <path
+                            d="M6.6001 11.3974C6.6001 8.67119 6.6001 7.3081 7.44363 6.46118C8.28716 5.61426 9.64481 5.61426 12.3601 5.61426H15.2401C17.9554 5.61426 19.313 5.61426 20.1566 6.46118C21.0001 7.3081 21.0001 8.6712 21.0001 11.3974V16.2167C21.0001 18.9429 21.0001 20.306 20.1566 21.1529C19.313 21.9998 17.9554 21.9998 15.2401 21.9998H12.3601C9.64481 21.9998 8.28716 21.9998 7.44363 21.1529C6.6001 20.306 6.6001 18.9429 6.6001 16.2167V11.3974Z"
+                            fill="#1C274C"></path>
+                    </g>
+                </svg>Copy</button>
+            <button type="button" class="btn btn-blue" onclick="applyFeatures()"><svg width="64px" height="64px"
+                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path
+                            d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z"
+                            fill="#1C274C"></path>
+                    </g>
+                </svg> Apply Tools</button>
+            <button type="button" class="btn btn-blue" onclick="formatJSON()"><svg fill="#0e0b37"
+                    xmlns="http://www.w3.org/2000/svg" width="64px" height="64px" viewBox="0 0 52 52"
+                    enable-background="new 0 0 52 52" xml:space="preserve" stroke="#0e0b37">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path
+                            d="M20,37.5c0-0.8-0.7-1.5-1.5-1.5h-15C2.7,36,2,36.7,2,37.5v11C2,49.3,2.7,50,3.5,50h15c0.8,0,1.5-0.7,1.5-1.5 V37.5z">
+                        </path>
+                        <path
+                            d="M8.1,22H3.2c-1,0-1.5,0.9-0.9,1.4l8,8.3c0.4,0.3,1,0.3,1.4,0l8-8.3c0.6-0.6,0.1-1.4-0.9-1.4h-4.7 c0-5,4.9-10,9.9-10V6C15,6,8.1,13,8.1,22z">
+                        </path>
+                        <path
+                            d="M41.8,20.3c-0.4-0.3-1-0.3-1.4,0l-8,8.3c-0.6,0.6-0.1,1.4,0.9,1.4h4.8c0,6-4.1,10-10.1,10v6 c9,0,16.1-7,16.1-16H49c1,0,1.5-0.9,0.9-1.4L41.8,20.3z">
+                        </path>
+                        <path
+                            d="M50,3.5C50,2.7,49.3,2,48.5,2h-15C32.7,2,32,2.7,32,3.5v11c0,0.8,0.7,1.5,1.5,1.5h15c0.8,0,1.5-0.7,1.5-1.5 V3.5z">
+                        </path>
+                    </g>
+                </svg> Format JSON</button>
+        </div>
+        <div class="right-tools">
+            <button type="button" class="btn btn-blue" onclick="undo()"><svg width="64px" height="64px"
+                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path
+                            d="M4 7H15C16.8692 7 17.8039 7 18.5 7.40193C18.9561 7.66523 19.3348 8.04394 19.5981 8.49999C20 9.19615 20 10.1308 20 12C20 13.8692 20 14.8038 19.5981 15.5C19.3348 15.9561 18.9561 16.3348 18.5 16.5981C17.8039 17 16.8692 17 15 17H8.00001M4 7L7 4M4 7L7 10"
+                            stroke="#1C274C" stroke-width="1.464" stroke-linecap="round" stroke-linejoin="round">
+                        </path>
+                    </g>
+                </svg> </button>
+            <button type="button" class="btn btn-blue" onclick="redo()"> <svg viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path
+                            d="M20 7H9.00001C7.13077 7 6.19615 7 5.5 7.40193C5.04395 7.66523 4.66524 8.04394 4.40193 8.49999C4 9.19615 4 10.1308 4 12C4 13.8692 4 14.8038 4.40192 15.5C4.66523 15.9561 5.04394 16.3348 5.5 16.5981C6.19615 17 7.13077 17 9 17H16M20 7L17 4M20 7L17 10"
+                            stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        </path>
+                    </g>
+                </svg></button>
+        </div>
+    </div>
+    <div style='woth'>    
+        <button onclick="downloadPDF()" class="download">Download as PDF</button>
+    <!-- 🔥 CASE CONVERSION SECTION (PUT THIS JUST BELOW INPUT BOX) -->
+    <div style="display:flex; gap:25px; margin-top:25px; flex-wrap:wrap;">
+        <h2 class="h2-secondary">Change Case</h2>
+        <div class="case-tools">
+            <button type="button" onclick="processAjax({action:'upper'})">UPPERCASE</button>
+            <button type="button" onclick="processAjax({action:'lower'})">lowercase</button>
+            <button type="button" onclick="processAjax({action:'sentence'})">Sentence case</button>
+            <button type="button" onclick="processAjax({action:'title'})">Title Case</button>
+            <button type="button" onclick="processAjax({action:'toggle'})">Toggle Case</button>
+
+        </div>
+
+
+        <!-- Find & Replace (ONLY INPUT SIDE) -->
+        <div class="find-box">
+            <input type="text" id="findWord" name="find_word" placeholder="Find ">
+            <input type="text" id="replaceWord" name="replace_word" placeholder="Replace with">
+            <button type="button" class="btn btn-blue" onclick="applyFindReplace()">Apply</button>
+        </div>
+    </div>
+</div>
+<br>
+
+
+<!-- Feature Buttons -->
+<div class='feature-section'>
+    <h3>Cleaning Tools</h3>
+    <div class="features">
+        <label class="feature-btn"><input type="checkbox" name="remove_spaces" value="true"> Remove Extra
+            Spaces</label>
+        <label class="feature-btn"><input type="checkbox" name="remove_emoji" value="true"> Remove Emojis</label>
+        <label class="feature-btn">
+            <input type="checkbox" name="grammar" value="true"> Correct Grammar
+        </label>
+        <label class="feature-btn"><input type="checkbox" name="remove_empty" value="true"> Remove Empty
+            Lines</label>
+        <label class="feature-btn"><input type="checkbox" name="remove_urls" value="true"> Remove URLs</label>
+        <label class="feature-btn"><input type="checkbox" name="remove_html" value="true"> Remove HTML</label>
+        <label class="feature-btn"><input type="checkbox" name="remove_duplicates" value="true"> Remove Duplicate
+            Lines</label>
+        <label class="feature-btn"><input type="checkbox" name="remove_punct" value="true"> Remove
+            Punctuation</label>
+    </div>
+</div>
+<div class='feature-section'>
+    <h3>Formatting & Fixing</h3>
+    <div class="features">
+        <label class="feature-btn"><input type="checkbox" name="normalize_text" value="true"> Normalize Text</label>
+        <label class="feature-btn"><input type="checkbox" name="auto_caps" value="true"> Auto Capitalize</label>
+        <label class="feature-btn"><input type="checkbox" name="fix_punct" value="true"> Fix Repeated
+            Punctuation</label>
+    </div>
+</div>
+
+<div class='feature-section'>
+    <h3> Text Analytics</h3>
+
+
+    <div class="analyzer">
+
+        <div class="card">
+            <h3>Words</h3>
+            <p id="liveWords">0</p>
+        </div>
+        <div class="card">
+            <h3>Characters</h3>
+            <p id="liveChars">0</p>
+        </div>
+        <div class="card">
+            <h3>Characters (no spaces)</h3>
+            <p id="liveCharsNoSpace">0</p>
+        </div>
+        <div class="card">
+            <h3>Paragraphs</h3>
+            <p id="liveParas">0</p>
+        </div>
+        <div class="card">
+            <h3>Sentences</h3>
+            <p id="sentences">0</p>
+        </div>
+        <div class="card">
+            <h3>Lines</h3>
+            <p id="lines">0</p>
+        </div>
+        <div class="card">
+            <h3>Min Read</h3>
+            <p id="liveTime">0</p>
+        </div>
+        <div class="card">
+            <h3>Pages</h3>
+            <p id="livePages">0</p>
+        </div>
+        <div class="card">
+            <h3>Avg words / sentence</h3>
+            <p id="avgWords">0</p>
+        </div>
+        
+        
+        <div class="card">
+            <h3>Total Syllables</h3>
+            <p id="syllables">0</p>
+        </div>
+        <div class="card">
+            <h3>Characters / word</h3>
+            <p id="charPerWord">0.0</p>
+        </div>
+        <div class="card">
+            <h3>Reading Level</h3>
+            <p id="readingLevel">Easy</p>
+        </div>
+    </div>
+<div class="word-insights">
+    <h3>Word Insights</h3>
+
+    <div class="word-cards">
+        <div class="word-card">
+            <span class="label">Longest Word</span>
+            <span id="longestWord">""</span>
+        </div>
+
+        <div class="word-card">
+            <span class="label">Shortest Word</span>
+            <span id="shortestWord">""</span>
+        </div>
+
+        <div class="word-card">
+            <span class="label">Unique Words</span>
+            <span id="uniqueWords">0</span>
+        </div>
+    </div>
+
+    <p class="hint">Click on a word to highlight it in the text 👆</p>
+</div>
+
+
+
+
+
+</div>
+
+</div>
+</div>
+
+
+
+
+
+</div>
+<div id="globalLoader" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.7); z-index:9999; justify-content:center; align-items:center;">
+    <p>Processing...</p>
+</div>
+<script>
+    let historyStack = [];
+    let redoStack = [];
+    let isProgrammaticChange = false;
+    let input;
+
+
+    function getCSRFToken() {
+        let cookieValue = null;
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            cookie = cookie.trim();
+            if (cookie.startsWith("csrftoken=")) {
+                cookieValue = cookie.substring("csrftoken=".length);
+                break;
+            }
+        }
+        return cookieValue;
+    }
+
+function downloadPDF() {
+    const text = document.getElementById("inputText").value;
+
+    const formData = new FormData();
+    formData.append("text", text);
+
+    showLoader();
+
+    fetch("/download-pdf/", {
+        method: "POST",
+        headers: { "X-CSRFToken": getCSRFToken() },
+        body: formData
+    })
+    .then(res => res.blob())
+    .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "edited_document.pdf";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
+    })
+    .finally(() => {
+        hideLoader();
+    });
+}
+
+function handleFileUpload() {
+    const input = document.getElementById('fileInput');
+    const message = document.getElementById('uploadMessage');
+    const editor = document.getElementById('inputText');
+
+    if (!input.files || input.files.length === 0) {
+        message.style.color = 'red';
+        message.textContent = "Please select a file!";
+        return;
+    }
+
+    const file = input.files[0];
+    const allowedTypes = [
+        "application/pdf",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "text/plain"
+    ];
+
+    if (!allowedTypes.includes(file.type)) {
+        message.style.color = 'red';
+        message.textContent = "Invalid file format!";
+        return;
+    }
+
+    message.style.color = 'green';
+    message.textContent = `File "${file.name}" selected successfully!`;
+
+    // TXT → read in browser
+    if (file.type === "text/plain") {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            editor.value = e.target.result;
+        };
+        reader.readAsText(file);
+    }
+    // PDF/DOCX → send to server
+    else {
+        const formData = new FormData();
+        formData.append('file', file);
+        showLoader();
+        fetch('/upload-file/', {
+        method: 'POST',
+        headers: { 'X-CSRFToken': getCSRFToken() },
+        body: formData
+    })
+        .then(res => res.json())
+        .then(resp => {
+            if (resp.success) {
+                editor.value = resp.text;
+            } else {
+                message.style.color = 'red';
+                message.textContent = resp.error || 'Failed to read file';
+            }
+        })
+        .catch(() => {
+            message.style.color = 'red';
+            message.textContent = 'Server error while reading file';
+})
+.finally(() => {
+    hideLoader();
+});
+}
+
+    function processAjax(data) {
+        const input = document.getElementById("inputText");   // 🔥 ALWAYS GET FRESH
+        const formData = new FormData();
+        formData.append("text", input.value);
+
+        for (let key in data) {
+            formData.append(key, data[key]);
+        }
+
+         showLoader(); 
+
+
+        fetch("/process-text/", {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": getCSRFToken()
+            },
+            body: formData
+        })
+            .then(res => res.json())
+            .then(resp => {
+                isProgrammaticChange = true;
+
+                input.value = resp.text;
+                historyStack.push(input.value);
+                redoStack = [];
+
+                updateAnalyzer();
+                updateHighlights(document.getElementById("findWord").value);
+
+                isProgrammaticChange = false;
+            })
+            .catch(err => {
+                console.error("AJAX Error:", err);
+                alert("Server error. Check console.");
+            })
+            .finally(()=>{
+                hideLoader()
+            })
+    }
+    function showLoader() {
+    document.getElementById("globalLoader").style.display = "flex";
+    document.querySelectorAll("button").forEach(b => b.disabled = true);
+
+}
+
+    function hideLoader() {
+        document.getElementById("globalLoader").style.display = "none";
+        document.querySelectorAll("button").forEach(b => b.disabled = false);
+
+    }
+
+
+
+    //Dark theme
+    const toggle = document.getElementById("themeToggle");
+
+    toggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+
+        const mode = document.body.classList.contains("dark") ? "dark" : "light";
+        localStorage.setItem("theme", mode);
+    });
+
+    // Load saved theme
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark");
+    }
+
+    function copyText() {
+        const input = document.getElementById("inputText");
+        input.select();
+        document.execCommand("copy");
+        alert("Text copied!");
+    }
+
+    function formatJSON() {
+        const inputArea = document.getElementById("inputText");
+        try {
+            const obj = JSON.parse(input.value);
+            input.value = JSON.stringify(obj, null, 4); // pretty print
+            updateAnalyzer();
+        } catch (e) {
+            alert("Invalid JSON!");
+        }
+    }
+
+
+
+
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        input = document.getElementById("inputText");
+        const findBox = document.getElementById("findWord");
+        const highlightLayer = document.getElementById("highlightLayer");
+
+        if (input) {
+            input.addEventListener("input", function () {
+                if (!isProgrammaticChange) {
+                    historyStack.push(input.value);
+                    redoStack = [];   // clear redo when new typing happens
+                }
+                updateAnalyzer();
+
+                if (findBox.value.trim() !== "") {
+                    updateHighlights(findBox.value);
+                } else {
+                    updateHighlights(""); // clear highlight
+                }
+            });
+
+            // Sync scrolling
+            input.addEventListener("scroll", function () {
+                highlightLayer.scrollTop = input.scrollTop;
+                highlightLayer.scrollLeft = input.scrollLeft;
+            });
+        }
+
+        // Live highlight when typing in Find box
+        if (findBox) {
+            findBox.addEventListener("input", function () {
+                updateHighlights(this.value);
+            });
+        }
+
+        updateAnalyzer(); // run once on load
+    });
+
+    function applyFindReplace() {
+        const find = document.getElementById("findWord").value;
+        const replace = document.getElementById("replaceWord").value;
+
+        if (!find) {
+            updateHighlights(""); // clear highlight
+            return;
+        }
+
+        // Always highlight first
+        updateHighlights(find);
+
+        // Replace only if replace text exists
+        if (replace !== "") {
+            const regex = new RegExp(find, "gi");
+
+            // 🔥 START UNDO TRACKING
+            isProgrammaticChange = true;
+
+            input.value = input.value.replace(regex, replace);
+            historyStack.push(input.value);
+            redoStack = [];
+
+            updateAnalyzer();
+            updateHighlights(find);
+
+            isProgrammaticChange = false;
+            // 🔥 END UNDO TRACKING
+        }
+    }
+
+
+    function undo() {
+        if (historyStack.length > 1) {
+            isProgrammaticChange = true;
+
+            const current = historyStack.pop();
+            redoStack.push(current);
+
+            const prev = historyStack[historyStack.length - 1];
+            input.value = prev;
+
+            updateAnalyzer();
+            updateHighlights(document.getElementById("findWord").value);
+
+            isProgrammaticChange = false;
+        }
+    }
+
+    function redo() {
+        if (redoStack.length > 0) {
+            isProgrammaticChange = true;
+
+            const next = redoStack.pop();
+            historyStack.push(next);
+
+            input.value = next;
+
+            updateAnalyzer();
+            updateHighlights(document.getElementById("findWord").value);
+
+            isProgrammaticChange = false;
+        }
+    }
+
+
+
+
+    function copySummary() {
+        const summary = `
+        Words: ${liveWords.innerText}
+        Characters: ${liveChars.innerText}
+        Sentences: ${sentences.innerText}
+        Paragraphs: ${liveParas.innerText}
+        Reading Time: ${liveTime.innerText}
+        Reading Level: ${readingLevel.innerText}
+        Longest Word: ${longestWord.innerText}
+        Shortest Word: ${shortestWord.innerText}
+        Unique Words: ${uniqueWords.innerText}
+    `;
+
+        navigator.clipboard.writeText(summary);
+        alert("Analytics summary copied!");
+    }
+
+
+    function highlightWord(word) {
+        if (!word) return;
+        const text = input.value || "";
+        const index = text.toLowerCase().indexOf(word.toLowerCase());
+        if (index !== -1) {
+            input.focus();
+            input.setSelectionRange(index, index + word.length);
+        }
+    }
+
+    function countSyllables(word) {
+        word = word.toLowerCase();
+        if (word.length <= 3) return 1;
+        word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, "");
+        word = word.replace(/^y/, "");
+        const matches = word.match(/[aeiouy]{1,2}/g);
+        return matches ? matches.length : 1;
+    }
+
+    function updateAnalyzer() {
+        const input = document.getElementById("inputText");   // 🔥 FIX
+        const text = input.value;
+
+        const wordsArr = text.trim() ? text.trim().split(/\s+/) : [];
+        const words = wordsArr.length;
+        const chars = text.length;
+        const charsNoSpace = text.replace(/\s+/g, "").length;
+
+        const lines = text ? text.split("\n").length : 0;
+        const paragraphs = text.split(/\n\s*\n/).filter(p => p.trim().length > 0).length;
+
+        const sentencesArr = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+        const sentences = sentencesArr.length;
+
+        const avgWords = sentences ? (words / sentences).toFixed(1) : 0;
+
+        const readingTime = Math.ceil(words / 200);
+        const pages = (words / 300).toFixed(2);
+
+        // Word analysis
+        let longest = "";
+        let shortest = wordsArr[0] || "";
+        let syllableCount = 0;
+
+        const uniqueSet = new Set(wordsArr.map(w => w.toLowerCase()));
+
+        wordsArr.forEach(word => {
+            const clean = word.replace(/[^a-zA-Z]/g, "");
+            if (!clean) return;
+
+            if (clean.length > longest.length) longest = clean;
+            if (shortest === "" || clean.length < shortest.length) shortest = clean;
+
+            syllableCount += countSyllables(clean);
+        });
+
+        const charPerWord = words ? (charsNoSpace / words).toFixed(1) : 0;
+        let level = "Easy";
+        if (avgWords > 20 || charPerWord > 5) level = "Hard";
+
+        else if (avgWords > 14 || charPerWord > 4) level = "Medium";
+
+
+        document.getElementById("readingLevel").innerText = level;
+
+        window.currentLongest = longest;
+        window.currentShortest = shortest;
+
+
+
+
+
+        // Update UI
+        document.getElementById("liveWords").innerText = words;
+        document.getElementById("liveChars").innerText = chars;
+        document.getElementById("liveCharsNoSpace").innerText = charsNoSpace;
+        document.getElementById("liveParas").innerText = paragraphs;
+        document.getElementById("sentences").innerText = sentences;
+        document.getElementById("lines").innerText = lines;
+        document.getElementById("avgWords").innerText = avgWords;
+        document.getElementById("liveTime").innerText = readingTime + " min";
+        document.getElementById("livePages").innerText = pages;
+        document.getElementById("uniqueWords").innerText = uniqueSet.size;
+        const lw = document.getElementById("longestWord");
+        const sw = document.getElementById("shortestWord");
+
+        lw.innerText = longest || '""';
+        sw.innerText = shortest || '""';
+
+        lw.onclick = () => highlightWord(longest);
+        sw.onclick = () => highlightWord(shortest);
+
+        lw.style.cursor = "pointer";
+        sw.style.cursor = "pointer";
+        lw.title = "Click to highlight in text";
+        sw.title = "Click to highlight in text";
+        document.getElementById("syllables").innerText = syllableCount;
+        document.getElementById("charPerWord").innerText = charPerWord;
+    }
+
+    updateAnalyzer();
+    // Run once on load
+
+    function escapeHTML(text) {
+        return text.replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+    }
+    function escapeRegex(text) {
+        return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+
+
+    function updateHighlights(find) {
+        const text = input.value;
+        const layer = document.getElementById("highlightLayer");
+
+        if (!find) {
+            layer.innerHTML = escapeHTML(text);
+            return;
+        }
+
+        // Escape regex safely
+        const safeFind = find.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+        // Match everywhere (case-insensitive)
+        const regex = new RegExp(`(${safeFind})`, "gi");
+
+        const highlighted = escapeHTML(text).replace(
+            regex,
+            `<mark class="mark-find">$1</mark>`
+        );
+
+        layer.innerHTML = highlighted;
+    }
+    function applyFeatures() {
+        const data = {};
+
+        document.querySelectorAll(".feature-btn input").forEach(cb => {
+            if (cb.checked) {
+                data[cb.name] = "true";
+            }
+        });
+
+        processAjax(data);
+    }
+
+    function resetAll() {
+        setTimeout(() => {
+            updateAnalyzer();
+        }, 50);
+    }
+    window.onload = function() {
+    input = document.getElementById("inputText");
+    updateAnalyzer();
+};
+</script>
+{% endblock %}

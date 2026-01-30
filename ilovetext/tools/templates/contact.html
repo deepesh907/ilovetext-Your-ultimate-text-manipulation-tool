@@ -1,0 +1,91 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block title %}Contact Us | TextTool{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'tools/css/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="contact-page">
+
+    <div class="contact-wrapper">
+
+        <!-- Header -->
+        <header class="contact-header">
+            <h1>Contact us</h1>
+            <p>
+                Facing an issue, have a question, or want to suggest an improvement?
+                We’re always happy to hear from you.
+            </p>
+        </header>
+
+        <div class="contact-grid">
+
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h2>How Can We Help?</h2>
+
+                <p>
+                    Our support team is here to assist you with any technical issues,
+                    feature requests, or general queries related to TextTool.
+                </p>
+
+                <ul class="contact-points">
+                    <li>Report bugs or unexpected behavior</li>
+                    <li>Request new features or improvements</li>
+                    <li>Get help with downloads or formatting</li>
+                    <li>Share feedback to improve our tools</li>
+                </ul>
+
+                <div class="info-item">
+                    <strong>Email Us</strong>
+                    <span>support@texttool.com</span>
+                </div>
+
+                <div class="info-item">
+                    <strong>Response Time</strong>
+                    <span>Within 24 hours on business days</span>
+                </div>
+
+                <div class="info-item">
+                    <strong>Office</strong>
+                    <span>
+                        TextTool Inc.<br>
+                        123 Text Lane, Suite 456<br>
+                        Tech City, TC 78910
+                    </span>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2>Send Us a Message</h2>
+
+                <p class="form-note">
+                    Fill out the form below and our team will get back to you as soon as possible.
+                </p>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <textarea rows="5" placeholder="Describe your issue or suggestion..." required></textarea>
+
+                    <button type="submit">Submit Message</button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="contact-footer">
+            © 2026 TextTool Inc. · Your feedback helps us improve
+        </footer>
+
+    </div>
+
+</section>
+{% endblock %}

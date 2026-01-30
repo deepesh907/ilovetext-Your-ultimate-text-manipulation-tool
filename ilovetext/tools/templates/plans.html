@@ -1,0 +1,232 @@
+{% extends "base.html" %}
+{% block title %}All Tools – TextTool{% endblock %}
+
+{% block content %}
+<style>
+/* ================= TOOLS / SERVICES ================= */
+
+.tools-wrapper {
+    max-width: 1250px;
+    margin: 90px auto;
+    padding: 0 24px;
+    font-family: "Inter", system-ui, sans-serif;
+    color: #111827;
+}
+
+/* Header */
+.tools-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.tools-header h1 {
+    font-size: 2.6rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+}
+
+.tools-header p {
+    font-size: 1.05rem;
+    color: #4b5563;
+    max-width: 760px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* Filters */
+.tools-filters {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.tools-filters span {
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #374151;
+}
+
+/* Grid */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+}
+
+/* Card */
+.tool-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 26px 22px;
+    transition: all 0.25s ease;
+}
+
+.tool-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+/* Icon */
+.tool-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    margin-bottom: 14px;
+    color: white;
+    font-size: 1rem;
+}
+
+.icon-format { background: #6366f1; }
+.icon-case { background: #0ea5e9; }
+.icon-analytics { background: #22c55e; }
+.icon-clean { background: #f97316; }
+.icon-utility { background: #64748b; }
+
+/* Text */
+.tool-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.tool-card p {
+    font-size: 0.92rem;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+/* ========================================================= */
+/* ================= TOOLS PAGE DARK MODE ================== */
+/* ========================================================= */
+
+body.dark .tools-wrapper {
+    color: #e5e7eb;
+}
+
+/* Header */
+body.dark .tools-header h1 {
+    color: #f9fafb;
+}
+
+body.dark .tools-header p {
+    color: #9ca3af;
+}
+
+/* Filters */
+body.dark .tools-filters span {
+    background: #020617;
+    border: 1px solid #1e293b;
+    color: #cbd5f5;
+}
+
+/* Grid cards */
+body.dark .tool-card {
+    background: #020617;
+    border: 1px solid #1e293b;
+}
+
+body.dark .tool-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+}
+
+/* Text */
+body.dark .tool-card h3 {
+    color: #f1f5f9;
+}
+
+body.dark .tool-card p {
+    color: #94a3b8;
+}
+
+/* Icons (keep colors but add glow harmony) */
+body.dark .tool-icon {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
+}
+
+
+
+</style>
+
+<div class="tools-wrapper">
+
+    <!-- HEADER -->
+    <div class="tools-header">
+        <h1>Every text tool you need in one place</h1>
+        <p>
+            Format, clean, analyze, and transform your text instantly.
+            Built for speed, accuracy, and simplicity.
+        </p>
+    </div>
+
+    <!-- FILTER LABELS (STATIC UI ONLY) -->
+    <div class="tools-filters">
+        <span>All</span>
+        <span>Formatting</span>
+        <span>Case Tools</span>
+        <span>Analytics</span>
+        <span>Utilities</span>
+    </div>
+
+    <!-- TOOLS GRID -->
+    <div class="tools-grid">
+
+        <div class="tool-card">
+            <div class="tool-icon icon-format">Aa</div>
+            <h3>Text Formatter</h3>
+            <p>Fix spacing, line breaks, and paragraph formatting instantly.</p>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-icon icon-case">UP</div>
+            <h3>Change Case</h3>
+            <p>Convert text to uppercase, lowercase, title case, or sentence case.</p>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-icon icon-analytics">📊</div>
+            <h3>Text Analytics</h3>
+            <p>View word count, characters, reading time, and structure insights.</p>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-icon icon-clean">✂</div>
+            <h3>Remove Extra Spaces</h3>
+            <p>Clean unnecessary spaces, blank lines, and formatting noise.</p>
+        </div>
+        <div class="tool-card">
+            <div class="tool-icon icon-clean">✂</div>
+            <h3>Multi-format Text Export Tool </h3>
+            <p>Extract your text to PDF, Word, or TXT formats.</p>
+        </div>
+        <div class="tool-card">
+            <div class="tool-icon icon-clean">✂</div>
+            <h3>PDF, Word & Text Editor</h3>
+            <p>Edit and export PDF, Word, and text files online—fast, simple, and secure.</p>
+        </div>
+        <div class="tool-card">
+            <div class="tool-icon icon-clean">✂</div>
+            <h3>Remove Line Breaks</h3>
+            <p>Clean unnecessary spaces, blank lines, and formatting noise.</p>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-icon icon-utility">↔</div>
+            <h3>Find & Replace</h3>
+            <p>Quickly replace words or phrases across your entire text.</p>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

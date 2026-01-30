@@ -1,0 +1,1006 @@
+/* ================= GLOBAL RESET ================= */
+* {
+    box-sizing: border-box;
+    margin: 0%;
+    padding: 0%;
+}
+
+body {
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+    background: linear-gradient(135deg, #f5f9ff, #eef3ff);
+    color: #1f2937;
+    min-height: 100vh;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 40px;
+    background: white;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+#copy {
+    border: 1px solid #000;
+    ;
+}
+
+.navbar strong {
+    font-size: 20px;
+    color: #2563eb;
+}
+
+.navbar a {
+    margin: 0 12px;
+    text-decoration: none;
+    color: #374151;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.navbar a:hover {
+    color: #2563eb;
+}
+
+.navbar a {
+    color: #555;
+    padding: 8px 14px;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.navbar a.active {
+    color: #4f46e5 !important;
+    font-weight: 600;
+}
+
+.navbar a.active::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #4f46e5;
+    border-radius: 2px;
+}
+
+.navbar .pro {
+    background: linear-gradient(rgb(120 144 255), rgb(100 114 145));
+    color: white;
+    padding: 9px 12px;
+    border-radius: 6px;
+    margin-left: 8px;
+}
+
+.navbar .pro:hover {
+    /* background: #1d4ed8; */
+}
+
+/* ================= MAIN CONTAINER ================= */
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+
+}
+
+h1 {
+    background: linear-gradient();
+    font-size: 36px;
+    /* text-align: center; */
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.content {
+    text-align: center !important;
+    margin-bottom: 40px;
+}
+
+.subtitle {
+    /* text-align: center; */
+    color: #6b7280;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+/* ================= TEXT EDITOR ================= */
+.editor-box {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+
+
+textarea {
+    width: 100%;
+    min-height: 320px;
+    border: none;
+    outline: none;
+    resize: vertical;
+    padding: 34px;
+    /* padding: 24px; */
+    font-size: 15px;
+    text-align: left;
+    line-height: 1.6;
+    font-family: inherit;
+    box-shadow: 2px -2px 15px 2px black inset;
+    background: transparent;
+    position: relative;
+    z-index: 1;
+}
+
+/* ================= CONTROLS ================= */
+
+
+
+
+.navbar button {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+
+.navbar button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.right-tools button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.left-tools button {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.right-tools button {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+}
+
+.left-tools button svg {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+}
+
+
+
+/* ================= BUTTONS ================= */
+.btn {
+    border: none;
+    background: linear-gradient(rgb(81, 81, 255), rgb(0, 0, 252));
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    background: linear-gradient(rgb(164, 178, 255), rgb(51, 51, 255));
+    transform: translateY(-1px);
+}
+
+.poppins-thin {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Case buttons */
+.case-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: #f4f7ff;
+    padding: 10px;
+    border-radius: 18px;
+    border: 1px solid #dbe3ff;
+}
+
+.case-tools button {
+    background: none;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    color: #0c121bb0;
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+}
+
+
+
+.case-tools button:active {
+    transform: scale(0.97);
+}
+
+
+.case-tools button svg {
+    width: 30px;
+    height: 30px;
+
+}
+
+
+
+/* ================= FIND & REPLACE ================= */
+.find-box {
+    border-radius: 22px;
+    display: flex;
+    justify-content: right;
+    flex-direction: row;
+    background: none !important;
+    gap: 5px;
+
+}
+
+.find-box button {
+    background: linear-gradient(rgb(255, 75, 75), rgb(196, 23, 23));
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+#findWord,
+#replaceWord {
+    border: none;
+    ;
+    padding: 9px 12px !important;
+    border-radius: 10px;
+    font-size: 14px;
+    width: 150px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#inputText {
+    position: relative;
+    background: transparent;
+    /* 🔥 REQUIRED */
+    z-index: 1;
+    color: #000;
+    padding: 12px;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+
+
+}
+
+
+
+.find-box input {
+
+    background: rgba(184, 171, 171, 0.363);
+    /* padding: 5px 7px; */
+    outline: none;
+    border: none;
+}
+
+.find-box input:focus {
+    border-color: #2563eb;
+}
+
+/* ================= FEATURE SECTIONS ================= */
+.feature-section {
+    max-width: 1100px;
+    margin: auto;
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+h2-secondary {
+    /* width: 50%; */
+}
+
+/* ===== FEATURE CHECKBOX UI UPGRADE ===== */
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 15px;
+}
+
+.feature-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: #f5f8ff;
+    border: 1px solid #dbe3ff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    user-select: none;
+}
+
+/* hide default checkbox */
+.feature-btn input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 2px solid #9aa7ff;
+    background: white;
+    display: grid;
+    place-items: center;
+    transition: all 0.2s ease;
+}
+
+#extract-btn {
+    margin: 25px;
+    gap: 10px;
+    padding: 5px 5px;
+}
+
+/* checkmark */
+.feature-btn input::after {
+    content: "✓";
+    font-size: 14px;
+    color: white;
+    transform: scale(0);
+    transition: transform 0.2s ease;
+}
+
+/* checked state */
+.feature-btn input:checked {
+    background: linear-gradient(135deg, #4f6cff, #6c8cff);
+    border-color: #4f6cff;
+}
+
+.feature-btn input:checked::after {
+    transform: scale(1);
+}
+
+/* glow + lift */
+.feature-btn:has(input:checked) {
+    background: linear-gradient(135deg, #eef2ff, #f8faff);
+    border-color: #4f6cff;
+    box-shadow: 0 8px 20px rgba(79, 108, 255, 0.18);
+    transform: translateY(-2px);
+}
+
+/* hover effect */
+.feature-btn:hover {
+    border-color: #4f6cff;
+    background: #eef2ff;
+}
+
+/* section spacing */
+.feature-section {
+    margin-top: 40px;
+}
+
+.feature-section h3 {
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 20px;
+    color: #1c2b6b;
+}
+
+
+/* ================= ANALYZER CARDS ================= */
+/* ===== TEXT ANALYTICS DASHBOARD ===== */
+
+.analyzer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.analyzer .card {
+    background: linear-gradient(135deg, #ffffff, #f6f8ff);
+    border-radius: 18px;
+    padding: 18px 16px;
+    text-align: center;
+    border: 1px solid #dbe3ff;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.analyzer .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #4f6cff, #6c8cff);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.analyzer .card:hover::before {
+    opacity: 0.06;
+}
+
+.analyzer .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(79, 108, 255, 0.25);
+}
+
+.analyzer .card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #4b5fbf;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.analyzer .card p {
+    font-size: 26px;
+    font-weight: 800;
+    color: #1c2b6b;
+    position: relative;
+}
+
+/* clickable longest / shortest */
+#longestWord,
+#shortestWord,
+#uniqueWords {
+    cursor: pointer;
+    color: #000000;
+
+}
+
+/* word-count analysis */
+/* ===== WORD INSIGHTS SECTION ===== */
+
+.word-insights {
+    margin-top: 40px;
+    padding: 24px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #f7f9ff, #eef3ff);
+    border: 1px solid #dbe3ff;
+}
+
+.word-insights h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1c2b6b;
+    margin-bottom: 18px;
+}
+
+.word-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+}
+
+.word-card {
+    background: white;
+    border-radius: 18px;
+    padding: 18px;
+    text-align: center;
+    border: 1px solid #e0e6ff;
+    transition: all 0.25s ease;
+}
+
+.word-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 26px rgba(79, 108, 255, 0.22);
+}
+
+.word-card .label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #6a78d1;
+    margin-bottom: 8px;
+}
+
+.word-card span:last-child {
+    font-size: 20px;
+    font-weight: 800;
+    color: #4f6cff;
+}
+
+.word-insights .hint {
+    margin-top: 14px;
+    font-size: 13px;
+    color: #6b77c8;
+    text-align: center;
+}
+
+
+
+
+/* ================= FOOTER ================= */
+.footer {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    color: #6b7280;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* ================= DARK MODE ================= */
+
+
+
+/* ================= HIGHLIGHT ================= */
+.mark-find {
+    background: yellow;
+    color: black;
+    border-radius: 3px;
+}
+
+
+/* footer-section */
+/* ========================================================= */
+/* ================= UPLOAD PAGE (NEW UI) ================= */
+/* ========================================================= */
+
+.upload-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* Upload Card */
+.upload-box {
+    background: #ffffff;
+    border: 2px dashed #4f46e5;
+    border-radius: 14px;
+    padding: 40px 20px;
+    text-align: center;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.upload-box:hover {
+    background: #f3f6ff;
+    border-color: #4338ca;
+}
+
+.upload-box h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #374151;
+}
+
+.upload-box p {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.upload-box input[type="file"] {
+    margin-top: 15px;
+}
+
+/* File Info Bar */
+.file-info {
+    margin-top: 15px;
+    padding: 12px 16px;
+    background: #eef2ff;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #1e3a8a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.file-info span {
+    font-weight: 600;
+}
+
+.file-remove {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.file-remove:hover {
+    background: #dc2626;
+}
+
+.download {
+    background: linear-gradient(rgb(81, 81, 255), rgb(0, 0, 252));
+    cursor: pointer;
+    padding: 20px 80px;
+    margin: auto;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+.download:hover {
+    background: linear-gradient(rgb(10, 6, 255), rgba(87, 128, 252, 0.87));
+}
+
+/* ========================================================= */
+/* ================= UPLOAD EDITOR AREA =================== */
+/* ========================================================= */
+
+.upload-editor {
+    margin-top: 30px;
+}
+
+.editor-wrapper {
+    position: relative;
+    width: 100%;
+
+
+}
+
+.upload-editor .editor-box {
+    border: 1px solid #c7d2fe;
+}
+
+/* Tools panel above editor */
+.tools-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+/* Download buttons */
+.download-panel {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.editor-wrapper textarea,
+#highlightLayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    pointer-events: none;
+
+    white-space: pre-wrap;
+    word-wrap: break-word;
+
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+
+    padding: 12px;
+    box-sizing: border-box;
+
+    color: transparent;
+}
+
+.editor-wrapper textarea {
+    background: transparent;
+    color: transparent;
+    caret-color: #111;
+    resize: none;
+    outline: none;
+    z-index: 2;
+}
+
+.highlight-layer {
+    pointer-events: none;
+    overflow: auto;
+    /* 🔥 THIS IS THE FIX */
+    z-index: 1;
+}
+
+#inputText,
+.highlight-layer {
+    overflow: auto;
+
+}
+
+#highlightLayer {
+    z-index: 1;
+    pointer-events: none;
+    color: transparent;
+    padding: 10px 12px;
+}
+
+#highlightLayer mark {
+    background: yellow;
+    color: transparent;
+}
+
+#highlightLayer mark.active {
+    background: orange;
+}
+
+
+
+
+.download-panel button {
+    background: linear-gradient(rgb(34, 197, 94), rgb(22, 163, 74));
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.download-panel button:hover {
+    background: linear-gradient(rgb(74, 222, 128), rgb(22, 163, 74));
+}
+
+/* ========================================================= */
+/* ================= DRAG & DROP EFFECT =================== */
+/* ========================================================= */
+
+.upload-box.dragover {
+    background: #e0e7ff;
+    border-color: #3730a3;
+}
+
+
+.big-upload-btn {
+    margin-top: 20px;
+    background: linear-gradient(135deg, #1d43ff, #314daf);
+    color: white;
+    border: none;
+    padding: 16px 44px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 6px 18px rgba(79, 70, 229, 0.35);
+}
+
+.big-upload-btn:hover {
+    background: linear-gradient(rgb(99, 102, 241), rgb(79, 70, 229));
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(79, 70, 229, 0.45);
+}
+
+/* Dark mode */
+
+
+.controller {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 14px;
+    margin-top: 20px;
+    padding: 12px 14px;
+    background: linear-gradient(135deg, #f7f9ff, #eef3ff);
+    border-radius: 20px;
+    border: 1px solid #dbe3ff;
+}
+
+.left-tools,
+.right-tools {
+    display: flex;
+    gap: 10px;
+}
+
+/* buttons */
+.controller .btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 10px 14px;
+    border-radius: 14px;
+    border: none;
+    background: white;
+    color: black;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* icons size */
+.controller .btn svg {
+    width: 20px;
+    color: white;
+    height: 20px;
+}
+
+/* primary actions */
+.controller .btn-blue:hover {
+    background: linear-gradient(135deg, #1d43ff, #314daf);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* icon-only buttons */
+.right-tools .btn {
+    padding: 10px;
+    border-radius: 50%;
+}
+
+/* hover glow */
+.controller .btn:hover {
+    box-shadow: 0 10px 26px rgba(79, 108, 255, 0.25);
+    background: linear-gradient(rgb(81, 81, 255), rgb(0, 0, 252));
+}
+
+.loader-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(3px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loader-box {
+    background: #fff;
+    padding: 24px 30px;
+    border-radius: 14px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+}
+
+.spinner {
+    width: 42px;
+    height: 42px;
+    border: 4px solid #e5e7eb;
+    border-top: 4px solid #2563eb;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+.upload-box button {
+    text-align: center;
+
+    padding: 15px 15px;
+}
+
+/* pricing section starts */
+.pricing-section {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.pricing-section h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.pricing-section p {
+    color: #6b7280;
+    margin-bottom: 50px;
+    font-size: 16px;
+}
+
+.plans {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.plan-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    text-align: left;
+    position: relative;
+}
+
+.plan-card.popular {
+    border: 2px solid #4f46e5;
+}
+
+.badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: #4f46e5;
+    color: #fff;
+    padding: 4px 12px;
+    font-size: 12px;
+    border-radius: 20px;
+}
+
+.plan-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.price {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 15px 0;
+}
+
+.price span {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 25px 0;
+}
+
+ul li {
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+ul li::before {
+    content: "✓";
+    color: #16a34a;
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.btn {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.btn-outline {
+    border: 2px solid #4f46e5;
+    color: #4f46e5;
+}
+
+.btn-primary {
+    background: #4f46e5;
+    color: #ffffff;
+}
+
+.note {
+    margin-top: 50px;
+    font-size: 14px;
+    color: #6b7280;
+}

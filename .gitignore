@@ -1,0 +1,11 @@
+venv/
+ilovetext/tools/__pycache__/
+.env
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.egg-info/ 
+dist/

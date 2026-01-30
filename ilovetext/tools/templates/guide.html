@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}How to Use TextTool – Guide{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/guide.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="guide-page">
+
+    <div class="guide-wrapper">
+
+        <!-- Header -->
+        <header class="guide-header">
+            <h1>How to Use TextTool</h1>
+            <p>A simple guide to help you use our text tools efficiently</p>
+        </header>
+
+        <!-- Section 1 -->
+        <div class="guide-section">
+            <h2>What is TextTool?</h2>
+            <p>
+                TextTool is an online utility that helps you edit, clean,
+                format, and convert text quickly without installing any software.
+            </p>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="guide-section">
+            <h2>Available Features</h2>
+            <ul>
+                <li>Text formatting & cleaning</li>
+                <li>Case conversion (Uppercase, Lowercase, Sentence case)</li>
+                <li>Word & character counter</li>
+                <li>Download text as PDF or TXT</li>
+                <li>Fast & secure processing</li>
+            </ul>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="guide-section">
+            <h2>Step-by-Step Usage</h2>
+
+            <div class="guide-steps">
+                <div class="step-card">
+                    <h3>Step 1</h3>
+                    <p>Paste or type your text into the input box.</p>
+                </div>
+
+                <div class="step-card">
+                    <h3>Step 2</h3>
+                    <p>Select the operation you want to perform.</p>
+                </div>
+
+                <div class="step-card">
+                    <h3>Step 3</h3>
+                    <p>Review the processed output instantly.</p>
+                </div>
+
+                <div class="step-card">
+                    <h3>Step 4</h3>
+                    <p>Download or copy the final result.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="guide-section">
+            <h2>Tips for Best Results</h2>
+            <ul>
+                <li>Use clean plain text for accurate results</li>
+                <li>Check formatting before downloading</li>
+                <li>Use dark mode for long editing sessions</li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <footer class="guide-footer">
+            © 2026 TextTool Inc. • Simple • Fast • Reliable
+        </footer>
+
+    </div>
+</section>
+{% endblock %}
