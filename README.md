@@ -17,7 +17,8 @@ A Django-based web application that allows users to upload PDF and DOCX document
 
 INSTALLATIONS & SETUP
 1. Clone the repository
-git clone https://github.com/your-username/document-text-analysis.git
+git clone https://github.com/deepesh907/ilovetext-Your-ultimate-text-manipulation-tool.git
+
 cd document-text-analysis
 
 2.Create & activate virtual environment
